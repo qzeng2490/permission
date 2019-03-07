@@ -4,12 +4,13 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/permissiondb?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
     username: root
     password:
+  mvc:
+    view:
+      suffix: .jsp
+      prefix: /WEB-INF/jsp/
   thymeleaf:
-    mode: HTML5
     cache: false
-    servlet:
-      content-type: text/html
-    encoding: UTF-8
+    enabled: false
 
 mybatis:
   typeAliasesPackage: com.qzeng2490.permisson.model

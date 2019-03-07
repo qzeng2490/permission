@@ -9,6 +9,7 @@ import com.qzeng2490.permisson.service.SysTreeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -28,14 +29,14 @@ public class SysDeptController {
     @Autowired
     private SysTreeService sysTreeService;
 
-//    @RequestMapping("/dept.page")
-//    public ModelAndView page() {
-//        return new ModelAndView("dept");
-//    }
+    @RequestMapping("/dept.page")
+    public ModelAndView page() {
+        return new ModelAndView("dept");
+    }
 
     @RequestMapping("/save.json")
     @ResponseBody
-    public JsonData saveDept(DeptParam param) {
+    public JsonData saveDept(@RequestBody DeptParam param) {
         sysDeptService.save(param);
         return JsonData.success();
     }
@@ -49,7 +50,7 @@ public class SysDeptController {
 
     @RequestMapping("/update.json")
     @ResponseBody
-    public JsonData updateDept(DeptParam param) {
+    public JsonData updateDept(@RequestBody DeptParam param) {
         sysDeptService.update(param);
         return JsonData.success();
     }
