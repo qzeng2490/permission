@@ -1,6 +1,8 @@
 package com.qzeng2490.permisson.dao;
 
 import com.qzeng2490.permisson.model.SysAcl;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Service;
 
 public interface SysAclMapper {
     int deleteByPrimaryKey(Integer id);

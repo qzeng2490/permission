@@ -1,6 +1,8 @@
 package com.qzeng2490.permisson.dao;
 
 import com.qzeng2490.permisson.model.SysRoleAcl;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Service;
 
 public interface SysRoleAclMapper {
     int deleteByPrimaryKey(Integer id);

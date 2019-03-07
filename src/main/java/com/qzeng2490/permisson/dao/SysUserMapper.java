@@ -1,6 +1,12 @@
 package com.qzeng2490.permisson.dao;
 
+import com.qzeng2490.permisson.beans.PageQuery;
 import com.qzeng2490.permisson.model.SysUser;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 public interface SysUserMapper {
     int deleteByPrimaryKey(Integer id);
@@ -14,4 +20,18 @@ public interface SysUserMapper {
     int updateByPrimaryKeySelective(SysUser record);
 
     int updateByPrimaryKey(SysUser record);
+
+    SysUser findByKeyword(@Param("keyword") String keyword);
+
+    int countByMail(@Param("mail") String mail, @Param("id") Integer id);
+
+    int countByTelephone(@Param("telephone") String telephone, @Param("id") Integer id);
+
+    int countByDeptId(@Param("deptId") int deptId);
+
+    List<SysUser> getPageByDeptId(@Param("deptId") int deptId, @Param("page") PageQuery page);
+
+    List<SysUser> getByIdList(@Param("idList") List<Integer> idList);
+
+    List<SysUser> getAll();
 }

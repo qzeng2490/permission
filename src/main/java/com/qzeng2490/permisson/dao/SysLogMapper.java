@@ -2,6 +2,8 @@ package com.qzeng2490.permisson.dao;
 
 import com.qzeng2490.permisson.model.SysLog;
 import com.qzeng2490.permisson.model.SysLogWithBLOBs;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Service;
 
 public interface SysLogMapper {
     int deleteByPrimaryKey(Integer id);
