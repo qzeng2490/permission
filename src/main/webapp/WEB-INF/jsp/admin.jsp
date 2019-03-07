@@ -1,10 +1,10 @@
-<%@ page import="com.mmall.common.RequestHolder" %>
-<%@ page import="com.mmall.model.SysUser" %>
+<%@ page import="com.qzeng2490.permisson.common.RequestHolder" %>
+<%@ page import="com.qzeng2490.permisson.model.SysUser" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <jsp:include page="/src/main/webapp/common/backend_common.jsp"/>
+    <jsp:include page="common/backend_common.jsp"/>
 </head>
 
 <body class="no-skin">

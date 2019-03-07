@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>角色</title>
-    <jsp:include page="/src/main/webapp/common/backend_common.jsp" />
+    <jsp:include page="common/backend_common.jsp" />
     <link rel="stylesheet" href="/ztree/zTreeStyle.css" type="text/css">
     <link rel="stylesheet" href="/assets/css/bootstrap-duallistbox.min.css" type="text/css">
     <script type="text/javascript" src="/ztree/jquery.ztree.all.min.js"></script>

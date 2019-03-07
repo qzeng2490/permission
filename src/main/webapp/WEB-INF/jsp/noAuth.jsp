@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>无权限访问</title>
-    <jsp:include page="/src/main/webapp/common/backend_common.jsp"/>
+    <jsp:include page="common/backend_common.jsp"/>
 </head>
 <body class="no-skin" youdao="bind" style="background: white">
 <div class="main-content-inner">

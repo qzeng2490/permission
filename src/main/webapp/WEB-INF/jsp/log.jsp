@@ -1,8 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <jsp:include page="/src/main/webapp/common/backend_common.jsp"/>
-    <jsp:include page="/src/main/webapp/common/page.jsp"/>
+    <jsp:include page="common/backend_common.jsp"/>
+    <jsp:include page="common/page.jsp"/>
 </head>
 <body class="no-skin" youdao="bind" style="background: white">
 <input id="gritter-light" checked="" type="checkbox" class="ace ace-switch ace-switch-5"/>
