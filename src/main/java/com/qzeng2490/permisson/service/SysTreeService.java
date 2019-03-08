@@ -29,13 +29,13 @@ import java.util.stream.Collectors;
 @Service
 public class SysTreeService {
 
-    @Autowired
+    @Resource
     private SysDeptMapper sysDeptMapper;
-    @Autowired
+    @Resource
     private SysAclModuleMapper sysAclModuleMapper;
 //    @Resource
 //    private SysCoreService sysCoreService;
-    @Autowired
+    @Resource
     private SysAclMapper sysAclMapper;
 
 //    public List<AclModuleLevelDto> userAclTree(int userId) {

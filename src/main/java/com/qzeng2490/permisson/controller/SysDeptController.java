@@ -36,7 +36,7 @@ public class SysDeptController {
 
     @RequestMapping("/save.json")
     @ResponseBody
-    public JsonData saveDept(@RequestBody DeptParam param) {
+    public JsonData saveDept(DeptParam param) {
         sysDeptService.save(param);
         return JsonData.success();
     }
@@ -50,7 +50,7 @@ public class SysDeptController {
 
     @RequestMapping("/update.json")
     @ResponseBody
-    public JsonData updateDept(@RequestBody DeptParam param) {
+    public JsonData updateDept(DeptParam param) {
         sysDeptService.update(param);
         return JsonData.success();
     }

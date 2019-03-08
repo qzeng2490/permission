@@ -22,9 +22,9 @@ import java.util.List;
 @Service
 public class SysDeptService {
 
-    @Autowired
+    @Resource
     private SysDeptMapper sysDeptMapper;
-    @Autowired
+    @Resource
     private SysUserMapper sysUserMapper;
 //    @Resource
 //    private SysLogService sysLogService;
