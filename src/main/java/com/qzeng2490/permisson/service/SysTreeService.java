@@ -33,47 +33,47 @@ public class SysTreeService {
     private SysDeptMapper sysDeptMapper;
     @Resource
     private SysAclModuleMapper sysAclModuleMapper;
-//    @Resource
-//    private SysCoreService sysCoreService;
+    @Resource
+    private SysCoreService sysCoreService;
     @Resource
     private SysAclMapper sysAclMapper;
 
-//    public List<AclModuleLevelDto> userAclTree(int userId) {
-//        List<SysAcl> userAclList = sysCoreService.getUserAclList(userId);
-//        List<AclDto> aclDtoList = new ArrayList<>();
-//        for (SysAcl acl : userAclList) {
-//            AclDto dto = AclDto.adapt(acl);
-//            dto.setHasAcl(true);
-//            dto.setChecked(true);
-//            aclDtoList.add(dto);
-//        }
-//        return aclListToTree(aclDtoList);
-//    }
+    public List<AclModuleLevelDto> userAclTree(int userId) {
+        List<SysAcl> userAclList = sysCoreService.getUserAclList(userId);
+        List<AclDto> aclDtoList = new ArrayList<>();
+        for (SysAcl acl : userAclList) {
+            AclDto dto = AclDto.adapt(acl);
+            dto.setHasAcl(true);
+            dto.setChecked(true);
+            aclDtoList.add(dto);
+        }
+        return aclListToTree(aclDtoList);
+    }
 
-//    public List<AclModuleLevelDto> roleTree(int roleId) {
-//        // 1、当前用户已分配的权限点
-//        List<SysAcl> userAclList = sysCoreService.getCurrentUserAclList();
-//        // 2、当前角色分配的权限点
-//        List<SysAcl> roleAclList = sysCoreService.getRoleAclList(roleId);
-//        // 3、当前系统所有权限点
-//        List<AclDto> aclDtoList = Lists.newArrayList();
-//
-//        Set<Integer> userAclIdSet = userAclList.stream().map(sysAcl -> sysAcl.getId()).collect(Collectors.toSet());
-//        Set<Integer> roleAclIdSet = roleAclList.stream().map(sysAcl -> sysAcl.getId()).collect(Collectors.toSet());
-//
-//        List<SysAcl> allAclList = sysAclMapper.getAll();
-//        for (SysAcl acl : allAclList) {
-//            AclDto dto = AclDto.adapt(acl);
-//            if (userAclIdSet.contains(acl.getId())) {
-//                dto.setHasAcl(true);
-//            }
-//            if (roleAclIdSet.contains(acl.getId())) {
-//                dto.setChecked(true);
-//            }
-//            aclDtoList.add(dto);
-//        }
-//        return aclListToTree(aclDtoList);
-//    }
+    public List<AclModuleLevelDto> roleTree(int roleId) {
+        // 1、当前用户已分配的权限点
+        List<SysAcl> userAclList = sysCoreService.getCurrentUserAclList();
+        // 2、当前角色分配的权限点
+        List<SysAcl> roleAclList = sysCoreService.getRoleAclList(roleId);
+        // 3、当前系统所有权限点
+        List<AclDto> aclDtoList = Lists.newArrayList();
+
+        Set<Integer> userAclIdSet = userAclList.stream().map(sysAcl -> sysAcl.getId()).collect(Collectors.toSet());
+        Set<Integer> roleAclIdSet = roleAclList.stream().map(sysAcl -> sysAcl.getId()).collect(Collectors.toSet());
+
+        List<SysAcl> allAclList = sysAclMapper.getAll();
+        for (SysAcl acl : allAclList) {
+            AclDto dto = AclDto.adapt(acl);
+            if (userAclIdSet.contains(acl.getId())) {
+                dto.setHasAcl(true);
+            }
+            if (roleAclIdSet.contains(acl.getId())) {
+                dto.setChecked(true);
+            }
+            aclDtoList.add(dto);
+        }
+        return aclListToTree(aclDtoList);
+    }
 
     public List<AclModuleLevelDto> aclListToTree(List<AclDto> aclDtoList) {
         if (CollectionUtils.isEmpty(aclDtoList)) {
