@@ -1,9 +1,23 @@
 spring:
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/permissiondb?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
-    username: root
+    minIdle: 500
+    validationQuery: select 'x'
+    initialSize: 500
+    maxWait: 60000
+    filters: stat
+    poolPreparedStatements: true
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://127.0.0.1:3306/permissiondb?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false
     password:
+    testOnBorrow: false
+    maxOpenPreparedStatements: 20
+    testWhileIdle: true
+    minEvictableIdleTimeMillis: 300000
+    timeBetweenEvictionRunsMillis: 60000
+    testOnReturn: false
+    driver-class-name: com.mysql.jdbc.Driver
+    maxActive: 5000
+    username: root
   mvc:
     view:
       suffix: .jsp
@@ -15,3 +29,13 @@ spring:
 mybatis:
   typeAliasesPackage: com.qzeng2490.permisson.model
   mapperLocations: classpath:mapper/*.xml
+
+redis:
+  password:
+  poolMaxTotal: 1000
+  port: 6379
+  poolMaxWait: 500
+  host: 127.0.0.1
+  poolMaxIdle: 500
+  timeout: 20
+
