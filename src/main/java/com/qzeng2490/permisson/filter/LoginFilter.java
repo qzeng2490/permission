@@ -4,6 +4,7 @@ package com.qzeng2490.permisson.filter;
 import com.qzeng2490.permisson.common.RequestHolder;
 import com.qzeng2490.permisson.model.SysUser;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.Filter;
@@ -25,10 +26,6 @@ import java.util.Set;
 @WebFilter(urlPatterns = {"/admin/*","/sys/*"})
 public class LoginFilter implements Filter {
 
-  private static final Set<String> NOT_ALLOWED_PATHS = Collections.unmodifiableSet(new HashSet<>(
-          Arrays.asList("/sys/*", "/admin/*")));
-
-
     public void init(FilterConfig filterConfig) throws ServletException {
 
     }
@@ -37,9 +34,6 @@ public class LoginFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
 
-//      String path = req.getRequestURI().substring(req.getContextPath().length()).replaceAll("[/]+$", "");
-//      boolean notAllowedPath = NOT_ALLOWED_PATHS.contains(path);
-//      if (notAllowedPath) {
         SysUser sysUser = (SysUser)req.getSession().getAttribute("user");
         if (sysUser == null) {
           String desPath = "/signin.jsp";
@@ -50,9 +44,6 @@ public class LoginFilter implements Filter {
         RequestHolder.add(req);
         filterChain.doFilter(servletRequest, servletResponse);
         return;
-//      }else {
-//        filterChain.doFilter(servletRequest, servletResponse);
-//      }
     }
 
     public void destroy() {

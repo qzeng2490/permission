@@ -7,6 +7,7 @@ import com.qzeng2490.permisson.beans.PageResult;
 import com.qzeng2490.permisson.common.JsonData;
 import com.qzeng2490.permisson.model.SysUser;
 import com.qzeng2490.permisson.param.UserParam;
+import com.qzeng2490.permisson.service.SysRoleService;
 import com.qzeng2490.permisson.service.SysTreeService;
 import com.qzeng2490.permisson.service.SysUserService;
 import org.springframework.stereotype.Controller;
@@ -26,8 +27,8 @@ public class SysUserController {
     private SysUserService sysUserService;
     @Resource
     private SysTreeService sysTreeService;
-//    @Resource
-//    private SysRoleService sysRoleService;
+    @Resource
+    private SysRoleService sysRoleService;
 
     @RequestMapping("/noAuth.page")
     public ModelAndView noAuth() {
@@ -55,12 +56,12 @@ public class SysUserController {
         return JsonData.success(result);
     }
 
-//    @RequestMapping("/acls.json")
-//    @ResponseBody
-//    public JsonData acls(@RequestParam("userId") int userId) {
-//        Map<String, Object> map = Maps.newHashMap();
-//        map.put("acls", sysTreeService.userAclTree(userId));
-//        map.put("roles", sysRoleService.getRoleListByUserId(userId));
-//        return JsonData.success(map);
-//    }
+    @RequestMapping("/acls.json")
+    @ResponseBody
+    public JsonData acls(@RequestParam("userId") int userId) {
+        Map<String, Object> map = Maps.newHashMap();
+        map.put("acls", sysTreeService.userAclTree(userId));
+        map.put("roles", sysRoleService.getRoleListByUserId(userId));
+        return JsonData.success(map);
+    }
 }
