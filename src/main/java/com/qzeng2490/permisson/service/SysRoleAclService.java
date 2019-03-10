@@ -5,10 +5,12 @@ import com.google.common.collect.Sets;
 
 import com.qzeng2490.permisson.beans.LogType;
 import com.qzeng2490.permisson.common.RequestHolder;
+import com.qzeng2490.permisson.dao.SysLogMapper;
 import com.qzeng2490.permisson.dao.SysRoleAclMapper;
 import com.qzeng2490.permisson.model.SysLogWithBLOBs;
 import com.qzeng2490.permisson.model.SysRoleAcl;
 import com.qzeng2490.permisson.util.IpUtil;
+import com.qzeng2490.permisson.util.JsonMapper;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,8 +25,8 @@ public class SysRoleAclService {
 
     @Resource
     private SysRoleAclMapper sysRoleAclMapper;
-//    @Resource
-//    private SysLogMapper sysLogMapper;
+    @Resource
+    private SysLogMapper sysLogMapper;
 
     public void changeRoleAcls(Integer roleId, List<Integer> aclIdList) {
         List<Integer> originAclIdList = sysRoleAclMapper.getAclIdListByRoleIdList(Lists.newArrayList(roleId));
@@ -37,7 +39,7 @@ public class SysRoleAclService {
             }
         }
         updateRoleAcls(roleId, aclIdList);
-//        saveRoleAclLog(roleId, originAclIdList, aclIdList);
+        saveRoleAclLog(roleId, originAclIdList, aclIdList);
     }
 
     @Transactional
@@ -56,16 +58,16 @@ public class SysRoleAclService {
         sysRoleAclMapper.batchInsert(roleAclList);
     }
 
-//    private void saveRoleAclLog(int roleId, List<Integer> before, List<Integer> after) {
-//        SysLogWithBLOBs sysLog = new SysLogWithBLOBs();
-//        sysLog.setType(LogType.TYPE_ROLE_ACL);
-//        sysLog.setTargetId(roleId);
-//        sysLog.setOldValue(before == null ? "" : JsonMapper.obj2String(before));
-//        sysLog.setNewValue(after == null ? "" : JsonMapper.obj2String(after));
-//        sysLog.setOperator(RequestHolder.getCurrentUser().getUsername());
-//        sysLog.setOperateIp(IpUtil.getRemoteIp(RequestHolder.getCurrentRequest()));
-//        sysLog.setOperateTime(new Date());
-//        sysLog.setStatus(1);
-//        sysLogMapper.insertSelective(sysLog);
-//    }
+    private void saveRoleAclLog(int roleId, List<Integer> before, List<Integer> after) {
+        SysLogWithBLOBs sysLog = new SysLogWithBLOBs();
+        sysLog.setType(LogType.TYPE_ROLE_ACL);
+        sysLog.setTargetId(roleId);
+        sysLog.setOldValue(before == null ? "" : JsonMapper.obj2String(before));
+        sysLog.setNewValue(after == null ? "" : JsonMapper.obj2String(after));
+        sysLog.setOperator(RequestHolder.getCurrentUser().getUsername());
+        sysLog.setOperateIp(IpUtil.getRemoteIp(RequestHolder.getCurrentRequest()));
+        sysLog.setOperateTime(new Date());
+        sysLog.setStatus(1);
+        sysLogMapper.insertSelective(sysLog);
+    }
 }

@@ -26,8 +26,8 @@ public class SysDeptService {
     private SysDeptMapper sysDeptMapper;
     @Resource
     private SysUserMapper sysUserMapper;
-//    @Resource
-//    private SysLogService sysLogService;
+    @Resource
+    private SysLogService sysLogService;
 
     public void save(DeptParam param) {
 //        BeanValidator.check(param);
@@ -38,13 +38,13 @@ public class SysDeptService {
                 .seq(param.getSeq()).remark(param.getRemark()).build();
 
         dept.setLevel(LevelUtil.calculateLevel(getLevel(param.getParentId()), param.getParentId()));
-//        dept.setOperator(RequestHolder.getCurrentUser().getUsername());
-//        dept.setOperateIp(IpUtil.getRemoteIp(RequestHolder.getCurrentRequest()));
-        dept.setOperator("system");
-        dept.setOperateIp("127.0.0.1");
+        dept.setOperator(RequestHolder.getCurrentUser().getUsername());
+        dept.setOperateIp(IpUtil.getRemoteIp(RequestHolder.getCurrentRequest()));
+//        dept.setOperator("system");
+//        dept.setOperateIp("127.0.0.1");
         dept.setOperateTime(new Date());
         sysDeptMapper.insertSelective(dept);
-//        sysLogService.saveDeptLog(null, dept);
+        sysLogService.saveDeptLog(null, dept);
     }
 
     public void update(DeptParam param) {
@@ -61,14 +61,14 @@ public class SysDeptService {
         SysDept after = SysDept.builder().id(param.getId()).name(param.getName()).parentId(param.getParentId())
                 .seq(param.getSeq()).remark(param.getRemark()).build();
         after.setLevel(LevelUtil.calculateLevel(getLevel(param.getParentId()), param.getParentId()));
-//        after.setOperator(RequestHolder.getCurrentUser().getUsername());
-//        after.setOperateIp(IpUtil.getRemoteIp(RequestHolder.getCurrentRequest()));
-        after.setOperator("system-update");
-        after.setOperateIp("127.0.0.1");
+        after.setOperator(RequestHolder.getCurrentUser().getUsername());
+        after.setOperateIp(IpUtil.getRemoteIp(RequestHolder.getCurrentRequest()));
+//        after.setOperator("system-update");
+//        after.setOperateIp("127.0.0.1");
         after.setOperateTime(new Date());
 
         updateWithChild(before, after);
-//        sysLogService.saveDeptLog(before, after);
+        sysLogService.saveDeptLog(before, after);
     }
 
     @Transactional
